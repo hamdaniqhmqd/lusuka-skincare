@@ -1,11 +1,11 @@
+// src/app/about/page.tsx
+
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Leaf, Eye, Heart, Globe, BookOpen, HandHeart } from "lucide-react";
-import PageHeader from "@/components/Sections/PageHeader";
 import SectionHeading from "@/components/Sections/SectionHeading";
 import Photo from "@/components/Photo";
 import Reveal from "@/components/Reveal";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import CtaSection from "@/components/Sections/CtaSection";
 
 const u = (photoId: string, w = 800) =>
   `https://images.unsplash.com/${photoId}?q=80&w=${w}&auto=format&fit=crop`;
@@ -15,6 +15,27 @@ export const metadata: Metadata = {
   description:
     "Kenali kisah, visi, dan komitmen bahan Lusuka Skin, brand skincare vegan dan cruelty free.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "Tentang Kami — Lusuka Skin",
+    description:
+      "Kenali kisah, visi, dan komitmen bahan Lusuka Skin, brand skincare vegan dan cruelty free.",
+    url: "https://lusuka-skincare.vercel.app/about",
+    images: [
+      {
+        url: "/images/banner_seo.png",
+        width: 1200,
+        height: 630,
+        alt: "Tentang Lusuka Skin",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tentang Kami — Lusuka Skin",
+    description:
+      "Kenali kisah, visi, dan komitmen bahan Lusuka Skin, brand skincare vegan dan cruelty free.",
+    images: ["/images/banner_seo.png"],
+  },
 };
 
 const story = [
@@ -92,7 +113,7 @@ export default function AboutPage() {
     <>
       {/* Cerita Brand */}
       <section className="section">
-        <div className="container-custom grid items-center gap-12 lg:grid-cols-[55fr_45fr] pt-10">
+        <div className="container-custom grid items-center gap-12 lg:grid-cols-[55fr_45fr] pt-12 sm:pt-10">
           <Reveal>
             <div>
               <span className="eyebrow mb-4 block">Cerita Kami</span>
@@ -106,7 +127,6 @@ export default function AboutPage() {
               </div>
             </div>
           </Reveal>
-
 
           <Reveal delay={100}>
             <div className="space-y-6">
@@ -270,37 +290,12 @@ export default function AboutPage() {
       </section>
 
       {/* Banner CTA */}
-      <section className="section">
-        <div className="container-custom">
-          <div
-            className="rounded-lg p-16 text-center text-white"
-            style={{
-              background: `linear-gradient(135deg, var(--color-accent) 0%, #c08457 100%)`,
-            }}
-          >
-            <Reveal>
-              <>
-                <h2 className="mb-4 text-white">Ingin Tahu Lebih Banyak?</h2>
-                <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  Tim kami senang membantu Anda memilih perawatan yang tepat.
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <WhatsAppButton
-                    label="Ngobrol dengan Kami"
-                    message="Halo Lusuka Skin, saya ingin tahu lebih banyak tentang brand dan produk Anda."
-                    variant="white"
-                    className="border-white hover:bg-white/10"
-                  />
-                  <Link href="/product" className="btn hover:-translate-y-0.5"
-                    style={{ background: "white", color: "#171717", transition: "all 0.3s ease" }}>
-                    Lihat Produk
-                  </Link>
-                </div>
-              </>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Ingin Tahu Lebih Banyak?"
+        description="Tim kami senang membantu Anda memilih perawatan yang tepat."
+        whatsappText="Chat via WhatsApp"
+        whatsappMessage="Halo Lusuka Skin, saya ingin tahu lebih banyak tentang brand dan produk Anda."
+      />
     </>
   );
 }

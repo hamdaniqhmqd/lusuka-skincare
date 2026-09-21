@@ -1,42 +1,65 @@
+// src/app/contact/page.tsx
+
 import type { Metadata } from "next";
-import { MessageCircle, Mail, MapPin, Clock } from "lucide-react";
-import PageHeader from "@/components/Sections/PageHeader";
+import { Mail, MapPin, Clock } from "lucide-react";
 import SectionHeading from "@/components/Sections/SectionHeading";
 import ContactForm from "@/components/Sections/ContactForm";
 import Reveal from "@/components/Reveal";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import Link from "next/link";
+import FaqSection from "@/components/Sections/FaqSection";
+import CtaSection from "@/components/Sections/CtaSection";
+import { IconWa } from "@/utils/icons";
 
 export const metadata: Metadata = {
   title: "Hubungi Kami",
   description:
     "Hubungi Lusuka Skin via WhatsApp, email, atau kunjungi toko dan klinik terdekat. Kami siap membantu.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Hubungi Kami — Lusuka Skin",
+    description:
+      "Hubungi Lusuka Skin via WhatsApp, email, atau kunjungi toko dan klinik terdekat. Kami siap membantu.",
+    url: "https://lusuka-skincare.vercel.app/contact",
+    images: [
+      {
+        url: "/images/banner_seo.png",
+        width: 1200,
+        height: 630,
+        alt: "Hubungi Lusuka Skin",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hubungi Kami — Lusuka Skin",
+    description: "Hubungi Lusuka Skin via WhatsApp, email, atau kunjungi toko dan klinik terdekat.",
+    images: ["/images/banner_seo.png"],
+  },
 };
 
 const contacts = [
   {
-    icon: MessageCircle,
+    icon: <IconWa />,
     title: "WhatsApp",
     value: "+62 812-3456-7890",
     note: "Respons tercepat untuk pemesanan dan konsultasi",
     href: "https://wa.me/6281234567890",
   },
   {
-    icon: Mail,
+    icon: <Mail size={28} />,
     title: "Email",
     value: "halo@contoh-domain.com",
     note: "Untuk kerja sama dan pertanyaan umum",
     href: "mailto:halo@contoh-domain.com",
   },
   {
-    icon: MapPin,
+    icon: <MapPin size={28} />,
     title: "Kantor Pusat",
     value: "Jl. Contoh Raya No. 12, Kelurahan Contoh, Kecamatan Contoh, Kota Contoh, 12345",
     note: "Kunjungan dengan janji temu",
   },
   {
-    icon: Clock,
+    icon: <Clock size={28} />,
     title: "Jam Operasional",
     value: "Senin–Jumat 09.00–17.00 WIB",
     note: "Sabtu 09.00–14.00 WIB · Minggu tutup",
@@ -100,54 +123,26 @@ export default function ContactPage() {
           <SectionHeading title="Cara Menghubungi Kami" align="center" />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {contacts.map((contact, i) => {
-              const Icon = contact.icon;
               return (
                 <Reveal key={contact.title} delay={i * 50}>
-                  {contact.href ? (
+                  <div
+                    className="card hover-lift h-full rounded-xl p-6 text-center transition-transform"
+                  >
                     <div
-                      className="card hover-lift h-full rounded-xl p-6 text-center transition-transform"
+                      className="flex justify-center mb-4 mx-auto mt-0 h-[56px] w-[56px] rounded-xl"
                     >
                       <div
-                        className="flex justify-center mb-4"
-                        style={{ width: "56px", height: "56px", margin: "0 auto" }}
+                        className="flex items-center justify-center rounded-full h-[56px] w-[56px] bg-lusuka-rose"
                       >
-                        <div
-                          className="flex items-center justify-center rounded-full"
-                          style={{
-                            background: "var(--color-rose)",
-                            width: "56px",
-                            height: "56px",
-                          }}
-                        >
-                          <Icon size={28} style={{ color: "var(--color-icon)" }} />
+                        <div style={{ color: "var(--color-icon)" }}>
+                          {contact.icon}
                         </div>
                       </div>
-                      <h3 className="font-semibold mb-1">{contact.title}</h3>
-                      <p className="text-sm font-semibold mb-2">{contact.value}</p>
-                      <p className="text-xs muted">{contact.note}</p>
                     </div>
-                  ) : (
-                    <div className="card hover-lift h-full rounded-xl p-6 text-center">
-                      <div
-                        className="flex justify-center mb-4"
-                        style={{ width: "56px", height: "56px", margin: "0 auto" }}
-                      >
-                        <div
-                          className="flex items-center justify-center rounded-full"
-                          style={{
-                            background: "var(--color-rose)",
-                            width: "56px",
-                            height: "56px",
-                          }}
-                        >
-                          <Icon size={28} style={{ color: "var(--color-icon)" }} />
-                        </div>
-                      </div>
-                      <h3 className="font-semibold mb-1">{contact.title}</h3>
-                      <p className="text-sm font-semibold mb-2">{contact.value}</p>
-                      <p className="text-xs muted">{contact.note}</p>
-                    </div>
-                  )}
+                    <h3 className="font-semibold mb-1">{contact.title}</h3>
+                    <p className="text-sm font-semibold mb-2">{contact.value}</p>
+                    <p className="text-xs muted">{contact.note}</p>
+                  </div>
                 </Reveal>
               );
             })}
@@ -173,14 +168,10 @@ export default function ContactPage() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.815214124055!2d106.79850632346898!3d-6.216043993701816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1b8b8b8b8b9%3A0x1234567890!2sJl.%20Contoh%20Raya%20No.%2012!5e0!3m2!1sen!2sid!4v1234567890"
                 width="100%"
                 height="420"
-                style={{
-                  border: 0,
-                  borderRadius: 24,
-                  marginBottom: 24,
-                }}
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
+                className="border-0 rounded-xl mb-6"
               />
               <p className="text-sm muted mb-4">
                 Temukan lebih banyak cabang toko dan klinik kami di berbagai kota.
@@ -218,37 +209,17 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ */}
-      <section className="section section-alt">
-        <div className="container-custom">
-          <SectionHeading
-            title="Pertanyaan yang Sering Diajukan"
-            align="center"
-          />
-          <div className="max-w-5xl mx-auto space-y-3">
-            {contactFaqs.map((f) => (
-              <Reveal key={f.q}>
-                <details className="card p-5 h-full rounded-xl cursor-pointer" open={false}>
-                  <summary className="flex items-center justify-between font-semibold hover:text-lusuka-accent transition-colors">
-                    {f.q}
-                    <span aria-hidden className="select-none">
-                      +
-                    </span>
-                  </summary>
-                  <p className="muted mt-4 text-sm leading-relaxed">{f.a}</p>
-                </details>
-              </Reveal>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <p className="text-sm muted mb-4">Belum menemukan jawabannya?</p>
-            <WhatsAppButton
-              label="Tanya Langsung"
-              message="Halo Lusuka Skin, saya punya pertanyaan yang belum terjawab di FAQ."
-              className="text-white!"
-            />
-          </div>
-        </div>
-      </section>
+      <FaqSection
+        title="Pertanyaan yang Sering Diajukan"
+        align="center"
+        faqs={contactFaqs}
+        className="section-alt" />
+
+      <CtaSection
+        title="Ingin Tahu Lebih Banyak?"
+        description="Kami siap membantu. Hubungi kami melalui WhatsApp atau Sosial Media."
+        whatsappMessage="Halo Lusuka Skin, saya ingin tahu lebih banyak tentang brand dan produk Anda."
+      />
     </>
   );
 }

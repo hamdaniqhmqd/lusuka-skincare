@@ -1,9 +1,11 @@
+// src/app/store/page.tsx
+
 import type { Metadata } from "next";
-import Link from "next/link";
 import SectionHeading from "@/components/Sections/SectionHeading";
 import BranchList, { type Branch } from "@/components/Data/BranchList";
 import Reveal from "@/components/Reveal";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import CtaSection from "@/components/Sections/CtaSection";
+import FaqSection from "@/components/Sections/FaqSection";
 
 const u = (photoId: string, w = 800) =>
   `https://images.unsplash.com/${photoId}?q=80&w=${w}&auto=format&fit=crop`;
@@ -13,10 +15,28 @@ export const metadata: Metadata = {
   description:
     "Temukan daftar cabang Lusuka Skin di berbagai kota di Indonesia, lengkap dengan alamat, jam buka, dan kontak WhatsApp.",
   alternates: { canonical: "/store" },
+  openGraph: {
+    title: "Toko & Klinik Skincare Terdekat — Lusuka Skin",
+    description:
+      "Temukan daftar cabang Lusuka Skin di berbagai kota di Indonesia, lengkap dengan alamat, jam buka, dan kontak WhatsApp.",
+    url: "https://lusuka-skincare.vercel.app/store",
+    images: [
+      {
+        url: "/images/banner_seo.png",
+        width: 1200,
+        height: 630,
+        alt: "Toko dan klinik Lusuka Skin",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Toko & Klinik Skincare Terdekat — Lusuka Skin",
+    description: "Temukan daftar cabang Lusuka Skin di berbagai kota di Indonesia.",
+    images: ["/images/banner_seo.png"],
+  },
 };
 
-// Catatan: setiap cabang sekarang berfungsi sebagai Toko & Klinik sekaligus,
-// sehingga tidak lagi dibedakan berdasarkan tipe "Toko" atau "Klinik".
 const branches: Branch[] = [
   {
     name: "Lusuka Skin Jakarta Selatan",
@@ -187,62 +207,18 @@ export default function StorePage() {
       </section>
 
       {/* Banner CTA */}
-      <section className="section">
-        <div className="container-custom">
-          <div
-            className="rounded-lg p-16 text-center text-white"
-            style={{
-              background: `linear-gradient(135deg, var(--color-accent) 0%, #c08457 100%)`,
-            }}
-          >
-            <Reveal>
-              <>
-                <h2 className="mb-4 text-white">Belum Ada Cabang di Kotamu?</h2>
-                <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  Pesan langsung via WhatsApp dan kami kirim ke seluruh Indonesia.
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <WhatsAppButton
-                    label="Ngobrol dengan Kami"
-                    message="Halo Lusuka Skin, saya ingin tahu lebih banyak tentang cabang Lusuka Skin."
-                    variant="white"
-                    className="border-white hover:bg-white/10"
-                  />
-                  <Link href="/product" className="btn hover:-translate-y-0.5"
-                    style={{ background: "white", color: "#171717", transition: "all 0.3s ease" }}>
-                    Lihat Produk
-                  </Link>
-                </div>
-              </>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Belum Ada Cabang di Kotamu?"
+        description="Pesan langsung via WhatsApp dan kami kirim ke seluruh Indonesia."
+        whatsappText="Chat via WhatsApp"
+        whatsappMessage="Halo Lusuka Skin, saya ingin tahu lebih banyak tentang brand dan produk Anda."
+      />
 
       {/* FAQ */}
-      <section className="section">
-        <div className="container-custom">
-          <SectionHeading
-            title="Pertanyaan yang Sering Diajukan"
-            align="center"
-          />
-          <div className="max-w-5xl mx-auto space-y-3">
-            {storeFaqs.map((f) => (
-              <Reveal key={f.q}>
-                <details className="card p-5 h-full rounded-xl cursor-pointer" open={false}>
-                  <summary className="flex items-center justify-between font-semibold hover:text-lusuka-accent transition-colors">
-                    {f.q}
-                    <span aria-hidden className="select-none">
-                      +
-                    </span>
-                  </summary>
-                  <p className="muted mt-4 text-sm leading-relaxed">{f.a}</p>
-                </details>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqSection
+        title="Pertanyaan yang Sering Diajukan"
+        align="center"
+        faqs={storeFaqs} />
     </>
   );
 }

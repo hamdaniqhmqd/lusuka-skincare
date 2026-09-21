@@ -39,18 +39,20 @@ export default function ProductGrid({ products, categories }: ProductGridProps) 
 
     return (
         <div className="container-custom pt-10">
-            <div className="mb-10 flex flex-wrap items-center gap-3">
-                {categories.map((c) => (
-                    <button
-                        key={c}
-                        className="chip"
-                        aria-pressed={active === c}
-                        onClick={() => setActive(c)}
-                    >
-                        {c}
-                    </button>
-                ))}
-                <span className="muted ml-auto text-sm">Menampilkan {shown.length} produk</span>
+            <div className="mb-10 flex flex-wrap gap-3">
+                <div className="flex flex-nowrap items-center gap-3 overflow-x-auto hide-scrollbar">
+                    {categories.map((c) => (
+                        <button
+                            key={c}
+                            className="chip"
+                            aria-pressed={active === c}
+                            onClick={() => setActive(c)}
+                        >
+                            {c}
+                        </button>
+                    ))}
+                </div>
+                <span className="muted sm:ml-auto text-sm">Menampilkan {shown.length} produk</span>
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,7 +85,7 @@ export default function ProductGrid({ products, categories }: ProductGridProps) 
                             <ul className="space-y-2 text-sm">
                                 {p.benefits.map((b) => (
                                     <li key={b} className="flex gap-2">
-                                        <Check size={16} className="flex-shrink-0 text-lusuka-accent" />
+                                        <Check size={16} className="shrink-0 text-lusuka-accent" />
                                         <span>{b}</span>
                                     </li>
                                 ))}

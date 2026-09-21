@@ -82,6 +82,7 @@ export default function Navbar() {
                             label="Chat"
                             message="Halo Lusuka Skin, saya ingin bertanya."
                             variant="outline"
+                            className="hover:bg-lusuka-beige!"
                         />
                     </div>
 
@@ -97,34 +98,34 @@ export default function Navbar() {
                         </button>
                     </div>
                 </div>
+            </main>
 
-                {/* Mobile Menu Panel */}
-                {open && (
-                    <div className="lg:hidden border-t" style={{ borderColor: "var(--color-border)" }}>
-                        <div className="container-custom py-4 space-y-4">
-                            {links.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className={`block py-2 text-lg font-semibold transition-colors ${pathname === link.href
-                                        ? "text-lusuka-accent"
-                                        : "text-lusuka-text hover:text-lusuka-accent"
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                            <div className="pt-4 border-t" style={{ borderColor: "var(--color-border)" }}>
-                                <WhatsAppButton
-                                    label="Chat WhatsApp"
-                                    message="Halo Lusuka Skin, saya ingin bertanya."
-                                    className="w-full justify-center"
-                                />
-                            </div>
+            {/* Mobile Menu Panel */}
+            {open && (
+                <div className="lg:hidden border-t border-lusuka-border bg-lusuka-bg/80 backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+                    <div className="container-custom py-4 space-y-4">
+                        {links.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`block py-2 text-lg font-semibold transition-colors ${pathname === link.href
+                                    ? "text-lusuka-accent"
+                                    : "text-lusuka-text hover:text-lusuka-accent"
+                                    }`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                        <div className="pt-4 border-t border-lusuka-border">
+                            <WhatsAppButton
+                                label="Chat WhatsApp"
+                                message="Halo Lusuka Skin, saya ingin bertanya."
+                                className="w-full justify-center text-white!"
+                            />
                         </div>
                     </div>
-                )}
-            </main>
+                </div>
+            )}
         </header>
     );
 }

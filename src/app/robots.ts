@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: "*",
             allow: "/",
         },
-        sitemap: "https://www.contoh-domain.com/sitemap.xml",
+        sitemap: "https://lusuka-skincare.vercel.app/sitemap.xml",
     };
 }

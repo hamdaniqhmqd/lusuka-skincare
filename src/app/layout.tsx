@@ -6,37 +6,67 @@ import ScrollTop from "@/components/ScrollTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
-// ✅ Geist Mono dari Google Fonts dengan semua weights
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-geist-mono",
-  display: "swap", // Font swap untuk performa lebih baik
-  preload: true, // Preload font untuk kecepatan
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.contoh-domain.com"),
+  metadataBase: new URL("https://lusuka-skincare.vercel.app"),
   title: {
     default: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
     template: "%s — Lusuka Skin",
   },
   description:
-    "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya.",
+    "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya. Tersedia di toko & klinik berbagai kota, pesan langsung via WhatsApp.",
+  keywords: [
+    "skincare vegan",
+    "skincare cruelty free",
+    "serum wajah",
+    "toko skincare",
+    "klinik kecantikan",
+    "Lusuka Skin",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "id_ID",
     siteName: "Lusuka Skin",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    url: "https://lusuka-skincare.vercel.app",
+    title: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
+    description:
+      "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya.",
+    images: [
+      {
+        url: "/images/banner_seo.png",
+        width: 1200,
+        height: 630,
+        alt: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
+    description:
+      "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya.",
+    images: ["/images/banner_seo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="id"
-      className={`${geistMono.variable}`}
+      className="scroll-smooth"
     >
       <head>
         <script
@@ -52,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="h-full antialiased font-mono">
+      <body className={`${geistMono.variable} h-full antialiased font-mono scrollbar_y_custom`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

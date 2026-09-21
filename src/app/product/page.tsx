@@ -1,10 +1,11 @@
+// src/app/product/page.tsx
+
 import type { Metadata } from "next";
-import Link from "next/link";
-import PageHeader from "@/components/Sections/PageHeader";
 import SectionHeading from "@/components/Sections/SectionHeading";
 import ProductGrid, { type Product } from "@/components/Data/ProductGrid";
 import Reveal from "@/components/Reveal";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CtaSection from "@/components/Sections/CtaSection";
 
 const u = (photoId: string, w = 800) =>
   `https://images.unsplash.com/${photoId}?q=80&w=${w}&auto=format&fit=crop`;
@@ -14,6 +15,27 @@ export const metadata: Metadata = {
   description:
     "Cleanser, toner, serum, moisturizer, dan sunscreen untuk berbagai jenis kulit. Pesan atau tanya langsung via WhatsApp.",
   alternates: { canonical: "/product" },
+  openGraph: {
+    title: "Katalog Produk Skincare — Lusuka Skin",
+    description:
+      "Cleanser, toner, serum, moisturizer, dan sunscreen untuk berbagai jenis kulit. Pesan atau tanya langsung via WhatsApp.",
+    url: "https://lusuka-skincare.vercel.app/product",
+    images: [
+      {
+        url: "/images/banner_seo.png",
+        width: 1200,
+        height: 630,
+        alt: "Katalog produk skincare Lusuka Skin",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Katalog Produk Skincare — Lusuka Skin",
+    description:
+      "Cleanser, toner, serum, moisturizer, dan sunscreen untuk berbagai jenis kulit.",
+    images: ["/images/banner_seo.png"],
+  },
 };
 
 const categories = ["Semua", "Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen"];
@@ -248,38 +270,12 @@ export default function ProductPage() {
       </section>
 
       {/* Banner CTA */}
-      <section className="section">
-        <div className="container-custom">
-          <div
-            className="rounded-lg p-16 text-center text-white"
-            style={{
-              background: `linear-gradient(135deg, var(--color-accent) 0%, #c08457 100%)`,
-            }}
-          >
-            <Reveal>
-              <>
-                <h2 className="mb-4 text-white">Bingung Memilih Produk?</h2>
-                <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  Ceritakan kondisi kulitmu, tim kami akan membantu merekomendasikan rutinitas yang
-                  sesuai.
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <WhatsAppButton
-                    label="Ngobrol dengan Kami"
-                    message="Halo Lusuka Skin, saya ingin konsultasi memilih produk skincare sesuai jenis kulit saya."
-                    variant="white"
-                    className="border-white hover:bg-white/10"
-                  />
-                  <Link href="/product" className="btn hover:-translate-y-0.5"
-                    style={{ background: "white", color: "#171717", transition: "all 0.3s ease" }}>
-                    Lihat Produk
-                  </Link>
-                </div>
-              </>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Bingung Memilih Produk?"
+        description="Ceritakan kondisi kulitmu, tim kami akan membantu merekomendasikan rutinitas yang sesuai."
+        whatsappText="Chat via WhatsApp"
+        whatsappMessage="Halo Lusuka Skin, saya ingin konsultasi memilih produk skincare sesuai jenis kulit saya."
+      />
     </>
   );
 }

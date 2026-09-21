@@ -7,20 +7,38 @@ import SectionHeading from "@/components/Sections/SectionHeading";
 import JsonLd from "@/components/Data/JsonLd";
 import WhatsAppButton, { waLink } from "@/components/WhatsAppButton";
 import RoutineTimeline from "@/components/RoutineTimeline";
+import CtaSection from "@/components/Sections/CtaSection";
+import FaqSection from "@/components/Sections/FaqSection";
 
 const u = (photoId: string, w = 800) =>
   `https://images.unsplash.com/${photoId}?q=80&w=${w}&auto=format&fit=crop`;
 
 export const metadata: Metadata = {
+  description:
+    "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya. Temukan serum, moisturizer, dan sunscreen, lalu pesan langsung via WhatsApp.",
   alternates: { canonical: "/" },
+  openGraph: {
+    url: "https://lusuka-skincare.vercel.app",
+    images: [
+      {
+        url: "/images/banner_seo.png",
+        width: 1200,
+        height: 630,
+        alt: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
+      },
+    ],
+  },
+  twitter: {
+    images: ["/images/banner_seo.png"],
+  },
 };
 
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Lusuka Skin",
-  url: "https://www.contoh-domain.com",
-  logo: "https://www.contoh-domain.com/logo.png",
+  url: "https://lusuka-skincare.vercel.app",
+  logo: "https://lusuka-skincare.vercel.app/logo.png",
   email: "halo@contoh-domain.com",
   telephone: "+6281234567890",
   sameAs: [
@@ -208,7 +226,7 @@ export default function HomePage() {
           background: `linear-gradient(135deg, var(--color-bg) 0%, var(--color-rose) 100%)`,
         }}
       >
-        <div className="container-custom grid items-center gap-12 lg:grid-cols-[50fr_50fr] pt-12">
+        <div className="container-custom grid items-center gap-12 lg:grid-cols-[50fr_50fr] pt-16 sm:pt-12">
           <Reveal>
             <span className="chip mb-4" style={{ cursor: "default" }}>
               Clean Beauty · Vegan · Cruelty Free
@@ -220,12 +238,13 @@ export default function HomePage() {
               Lusuka Skin menghadirkan skincare dengan bahan yang dipilih secara cermat dan formula lembut untuk membantu menjaga kelembapan, kesehatan, dan kenyamanan kulit setiap hari.
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
-              <Link href="/product" className="btn btn-primary hover:-translate-y-0.5">
+              <Link href="/product" className="btn btn-primary hover:-translate-y-0.5 text-white!">
                 Lihat Produk
               </Link>
               <WhatsAppButton
                 label="Chat via WhatsApp"
                 message="Halo Lusuka Skin, saya ingin konsultasi memilih produk skincare."
+                className="text-white!"
               />
             </div>
 
@@ -288,7 +307,7 @@ export default function HomePage() {
                           height: "56px",
                         }}
                       >
-                        <Icon size={28} style={{ color: "var(--color-accent)" }} />
+                        <Icon size={28} style={{ color: "var(--color-icon)" }} />
                       </div>
                     </div>
                     <h3 className="text-lg mb-2 mt-6">{h.title}</h3>
@@ -337,7 +356,8 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center">
-            <Link href="/product" className="btn btn-outline">
+            <Link href="/product" className="btn btn-outline hover:-translate-y-0.5 hover:bg-lusuka-beige!"
+              style={{ transition: "all 0.2s ease-in-out" }}>
               Lihat Semua Produk
             </Link>
           </div>
@@ -410,7 +430,8 @@ export default function HomePage() {
             <Link href={waLink(
               "Halo Lusuka Skin, saya ingin konsultasi memilih produk skincare."
             )}
-              className="btn btn-primary">
+              className="btn btn-primary hover:-translate-y-1!"
+              style={{ transition: "all 0.35s ease" }}>
               Konsultasikan Sekarang
             </Link>
           </div>
@@ -426,9 +447,9 @@ export default function HomePage() {
           >
             <Reveal>
               <div>
-                <span className="eyebrow mb-4 block">Toko & Klinik</span>
-                <h2 className="mb-4">Kunjungi Kami di 7 Kota</h2>
-                <p className="text-lg mb-6 muted">
+                <span className="eyebrow mb-4 block text-lusuka-eyebrow!">Toko & Klinik</span>
+                <h2 className="mb-4 font-bold!">Kunjungi Kami di 7 Kota</h2>
+                <p className="text-lg mb-6 text-lusuka-text/70">
                   Konsultasikan kulitmu langsung dan coba produk kami di toko atau klinik terdekat.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
@@ -476,65 +497,18 @@ export default function HomePage() {
       </section>
 
       {/* 9. FAQ */}
-      < section className="section" >
-        <div className="container-custom">
-          <SectionHeading
-            title="Pertanyaan yang Sering Diajukan"
-            align="center"
-          />
-          <div className="max-w-5xl mx-auto">
-            <div className="space-y-3">
-              {faqs.map((f) => (
-                <Reveal key={f.q}>
-                  <details className="card rounded-xl p-5 cursor-pointer" open={false}>
-                    <summary className="flex items-center justify-between font-semibold hover:text-lusuka-accent transition-colors">
-                      {f.q}
-                      <span aria-hidden className="select-none">
-                        +
-                      </span>
-                    </summary>
-                    <p className="muted mt-4 text-sm leading-relaxed">{f.a}</p>
-                  </details>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </ section>
+      <FaqSection
+        title="Pertanyaan yang Sering Diajukan"
+        align="center"
+        faqs={faqs} />
 
       {/* 10. Banner CTA */}
-      < section className="section" style={{ paddingBlock: 80 }
-      }>
-        <div className="container-custom">
-          <div
-            className="rounded-lg p-16 text-center text-white"
-            style={{
-              background: `linear-gradient(135deg, var(--color-accent) 0%, #c08457 100%)`,
-            }}
-          >
-            <Reveal>
-              <>
-                <h2 className="mb-4 text-white">Mulai Perjalanan Kulit Sehatmu</h2>
-                <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  Ngobrol dengan tim kami dan dapatkan rekomendasi rutinitas yang sesuai.
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <WhatsAppButton
-                    label="Chat via WhatsApp"
-                    message="Halo Lusuka Skin, saya ingin konsultasi memilih produk skincare."
-                    variant="white"
-                    className="hover:-translate-y-0.5"
-                  />
-                  <Link href="/product" className="btn hover:-translate-y-0.5"
-                    style={{ background: "white", color: "#171717" }}>
-                    Lihat Produk
-                  </Link>
-                </div>
-              </>
-            </Reveal>
-          </div>
-        </div>
-      </section >
+      <CtaSection
+        title="Ingin Tahu Lebih Banyak?"
+        description="Tim kami senang membantu Anda memilih perawatan yang tepat."
+        whatsappText="Chat via WhatsApp"
+        whatsappMessage="Halo Lusuka Skin, saya ingin tahu lebih banyak tentang brand dan produk Anda."
+      />
     </>
   );
 }
