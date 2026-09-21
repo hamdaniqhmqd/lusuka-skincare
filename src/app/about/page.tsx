@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://lusuka-skincare.vercel.app/about",
     images: [
       {
-        url: "/images/banner_seo.png",
+        url: "/images/banner_seo.webp",
         width: 1200,
         height: 630,
         alt: "Tentang Lusuka Skin",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Tentang Kami — Lusuka Skin",
     description:
       "Kenali kisah, visi, dan komitmen bahan Lusuka Skin, brand skincare vegan dan cruelty free.",
-    images: ["/images/banner_seo.png"],
+    images: ["/images/banner_seo.webp"],
   },
 };
 

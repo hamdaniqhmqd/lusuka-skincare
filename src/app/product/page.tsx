@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://lusuka-skincare.vercel.app/product",
     images: [
       {
-        url: "/images/banner_seo.png",
+        url: "/images/banner_seo.webp",
         width: 1200,
         height: 630,
         alt: "Katalog produk skincare Lusuka Skin",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Katalog Produk Skincare — Lusuka Skin",
     description:
       "Cleanser, toner, serum, moisturizer, dan sunscreen untuk berbagai jenis kulit.",
-    images: ["/images/banner_seo.png"],
+    images: ["/images/banner_seo.webp"],
   },
 };
 

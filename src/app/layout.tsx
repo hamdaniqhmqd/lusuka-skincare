@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya.",
     images: [
       {
-        url: "/images/banner_seo.png",
+        url: "/images/banner_seo.webp",
         width: 1200,
         height: 630,
         alt: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Lusuka Skin — Skincare Bersih untuk Kulit Sehat",
     description:
       "Produk skincare vegan dan cruelty free dengan bahan aktif teruji untuk kulit sehat dan bercahaya.",
-    images: ["/images/banner_seo.png"],
+    images: ["/images/banner_seo.webp"],
   },
   robots: {
     index: true,

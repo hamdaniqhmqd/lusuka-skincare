@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://lusuka-skincare.vercel.app/contact",
     images: [
       {
-        url: "/images/banner_seo.png",
+        url: "/images/banner_seo.webp",
         width: 1200,
         height: 630,
         alt: "Hubungi Lusuka Skin",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hubungi Kami — Lusuka Skin",
     description: "Hubungi Lusuka Skin via WhatsApp, email, atau kunjungi toko dan klinik terdekat.",
-    images: ["/images/banner_seo.png"],
+    images: ["/images/banner_seo.webp"],
   },
 };
 

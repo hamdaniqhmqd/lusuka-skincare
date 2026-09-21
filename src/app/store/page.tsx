@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "https://lusuka-skincare.vercel.app/store",
     images: [
       {
-        url: "/images/banner_seo.png",
+        url: "/images/banner_seo.webp",
         width: 1200,
         height: 630,
         alt: "Toko dan klinik Lusuka Skin",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Toko & Klinik Skincare Terdekat — Lusuka Skin",
     description: "Temukan daftar cabang Lusuka Skin di berbagai kota di Indonesia.",
-    images: ["/images/banner_seo.png"],
+    images: ["/images/banner_seo.webp"],
   },
 };
 
